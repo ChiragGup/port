@@ -46,11 +46,22 @@ function App() {
     { name: 'Tailwind CSS', color: 'from-teal-100 to-teal-200 text-teal-700' },
     { name: 'Next.js', color: 'from-gray-100 to-gray-200 text-gray-800' },
     { name: 'Git/GitHub', color: 'from-pink-100 to-pink-200 text-pink-700' },
+    { name: 'Node.js', color: 'from-green-100 to-green-200 text-green-700' },
+    { name: 'MongoDB', color: 'from-emerald-100 to-emerald-200 text-emerald-700' },
   ];
 
   const projects = [
+   {
+  id: 1,
+  title: 'Reel Scroller',
+  description:
+    'A dynamic and responsive social media-style Reel Scroller app built with Next.js and Tailwind CSS. Features include secure authentication using NextAuth, video uploads via ImageKit, and data management with MongoDB, providing a seamless user experience.',
+  tech: ['Next.js', 'Tailwind CSS', 'ImageKit', 'MongoDB', 'NextAuth'],
+  demo: 'https://my-final-reel.vercel.app/',
+  image: '/reel.png',
+},
     {
-      id: 1,
+      id: 2,
       title: 'Portfolio Website',
       description:
         'A modern and fully responsive personal portfolio website built with React.js and Tailwind CSS. It showcases projects, skills, and contact information in a clean, user-friendly interface.',
@@ -59,7 +70,7 @@ function App() {
       image: '/portfolio.png',
     },
     {
-      id: 2,
+      id: 3,
       title: 'Cooking Website',
       description:
         'A recipe and cooking website built with React and Tailwind CSS, featuring API integration for dynamic recipe data and a clean, user-friendly interface.',
@@ -67,16 +78,7 @@ function App() {
       demo: 'https://last-blog-nine.vercel.app/',
       image: '/cooking.png',
     },
-    {
-  id: 3,
-  title: 'NGO Website',
-  description:
-    'A responsive and modern NGO website built using React and Tailwind CSS. The website highlights the organization’s mission, events, and initiatives, providing a user-friendly experience for visitors.',
-  tech: ['React', 'Tailwind CSS'],
-  demo: 'https://ngo-eight-black.vercel.app/',
-  image: '/ngo.png',
-}
-
+    
   ];
 
   return (
@@ -154,8 +156,7 @@ function App() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Frontend Developer passionate about crafting responsive,
-              user-friendly, and visually appealing web experiences
+              Full Stack Developer passionate about building scalable, responsive, and secure web applications
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -177,19 +178,19 @@ function App() {
               <h2 className="text-4xl font-bold text-gray-900 mb-8">About Me</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  I'm an enthusiastic <strong>Frontend Developer</strong> with
+                  I'm an enthusiastic <strong>Full Stack Developer</strong> with
                   hands-on experience in building modern web applications using
-                  React.js, Next.js, and Tailwind CSS.
+                  Next.js, React.js, Node.js, and MongoDB.
                 </p>
                 <p>
-                  My expertise lies in creating clean UI components, integrating
-                  APIs, and optimizing performance for a seamless user
-                  experience.
+                  My expertise lies in designing scalable backend architectures,
+                  creating clean and responsive UI components, integrating APIs,
+                  and optimizing performance for a seamless full-stack experience.
                 </p>
                 <p>
-                  Beyond coding, I focus on writing maintainable code, following
-                  best practices, and constantly learning to sharpen my skills
-                  as a developer.
+                  Beyond coding, I focus on writing maintainable and secure code,
+                  following best practices, and constantly learning new tools
+                  and technologies to stay ahead in the full-stack ecosystem.
                 </p>
               </div>
             </div>
@@ -210,31 +211,30 @@ function App() {
       </section>
 
       {/* Skills Section */}
-<section id="skills" className="py-20 bg-gray-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold text-gray-900 mb-4">
-        Skills & Technologies
-      </h2>
-      <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-        Here are the technologies and tools I work with
-      </p>
-    </div>
+      <section id="skills" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Skills & Technologies
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Here are the technologies and tools I work with
+            </p>
+          </div>
 
-    <div className="flex flex-wrap justify-center gap-6">
-      {skills.map((skill, index) => (
-        <div
-          key={skill.name}
-          className={`w-40 h-32 flex items-center justify-center px-6 py-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r ${skill.color} font-semibold text-lg text-center transition-all duration-300`}
-          style={{ animationDelay: `${index * 100}ms` }}
-        >
-          {skill.name}
+          <div className="flex flex-wrap justify-center gap-6">
+            {skills.map((skill, index) => (
+              <div
+                key={skill.name}
+                className={`w-40 h-32 flex items-center justify-center px-6 py-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r ${skill.color} font-semibold text-lg text-center transition-all duration-300`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {skill.name}
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
+      </section>
 
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-white">
