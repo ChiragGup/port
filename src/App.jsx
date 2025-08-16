@@ -55,7 +55,7 @@ function App() {
       description:
         'A modern and fully responsive personal portfolio website built with React.js and Tailwind CSS. It showcases projects, skills, and contact information in a clean, user-friendly interface.',
       tech: ['React.js', 'Tailwind CSS'],
-      demo: 'my-final-reel.vercel.app',
+      demo: 'https://port-zeta-woad.vercel.app/',
       image: '/portfolio.png',
     },
     {
