@@ -73,7 +73,7 @@ function App() {
         "A modern, fully responsive personal portfolio website built with React.js and Tailwind CSS, showcasing projects, skills, and contact information in a clean and professional UI.",
       tech: ["React.js", "Tailwind CSS"],
       demo: "https://port-zeta-woad.vercel.app/",
-      github: "https://github.com/ChiragGup/portfolio",
+      github: "https://github.com/ChiragGup/port",
       image: "/portfolio.png",
     },
     {
