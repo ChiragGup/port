@@ -1,24 +1,23 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink } from 'lucide-react';
-import Contact from './Contact';
+import { useState, useEffect } from "react";
+import { Menu, X, ExternalLink, Github } from "lucide-react";
+import Contact from "./Contact";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
 
-  // Handle scroll to update active section
+  /* ---------------- Scroll Spy ---------------- */
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects']; // contact removed
-      const scrollPosition = window.scrollY + 100;
+      const sections = ["home", "about", "skills", "projects"];
+      const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
+        const el = document.getElementById(section);
+        if (el) {
           if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
+            scrollPosition >= el.offsetTop &&
+            scrollPosition < el.offsetTop + el.offsetHeight
           ) {
             setActiveSection(section);
             break;
@@ -27,207 +26,162 @@ function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsMenuOpen(false);
   };
 
+  /* ---------------- Skills (RESTORED UI) ---------------- */
   const skills = [
-    { name: 'React.js', color: 'from-blue-100 to-blue-200 text-blue-700' },
-    { name: 'JavaScript', color: 'from-yellow-100 to-yellow-200 text-yellow-700' },
-    { name: 'HTML/CSS', color: 'from-orange-100 to-orange-200 text-orange-700' },
-    { name: 'Tailwind CSS', color: 'from-teal-100 to-teal-200 text-teal-700' },
-    { name: 'Next.js', color: 'from-gray-100 to-gray-200 text-gray-800' },
-    { name: 'Git/GitHub', color: 'from-pink-100 to-pink-200 text-pink-700' },
-    { name: 'Node.js', color: 'from-green-100 to-green-200 text-green-700' },
-    { name: 'MongoDB', color: 'from-emerald-100 to-emerald-200 text-emerald-700' },
+    { name: "React.js", color: "from-blue-100 to-blue-200 text-blue-700" },
+    { name: "JavaScript", color: "from-yellow-100 to-yellow-200 text-yellow-700" },
+    { name: "HTML & CSS", color: "from-orange-100 to-orange-200 text-orange-700" },
+    { name: "Tailwind CSS", color: "from-teal-100 to-teal-200 text-teal-700" },
+    { name: "Next.js", color: "from-gray-100 to-gray-200 text-gray-800" },
+    { name: "Node.js", color: "from-green-100 to-green-200 text-green-700" },
+    { name: "MongoDB", color: "from-emerald-100 to-emerald-200 text-emerald-700" },
+    { name: "Git & GitHub", color: "from-pink-100 to-pink-200 text-pink-700" },
   ];
 
+  /* ---------------- Projects ---------------- */
   const projects = [
-   {
-  id: 1,
-  title: 'Reel Scroller',
-  description:
-    'A dynamic and responsive social media-style Reel Scroller app built with Next.js and Tailwind CSS. Features include secure authentication using NextAuth, video uploads via ImageKit, and data management with MongoDB, providing a seamless user experience.',
-  tech: ['Next.js', 'Tailwind CSS', 'ImageKit', 'MongoDB', 'NextAuth'],
-  demo: 'https://my-final-reel.vercel.app/',
-  image: '/reel.png',
-},
+    {
+      id: 1,
+      title: "AI Integrated Reel Scroller",
+      description:
+        "A full-stack AI-powered reel scroller with OAuth authentication, personal dashboards, ownership-based access control, and secure APIs. Users can upload, edit, delete, and manage reels while leveraging Gemini AI to generate captions and hashtags automatically.",
+      tech: [
+        "Next.js",
+        "MongoDB",
+        "NextAuth",
+        "Gemini AI",
+        "ImageKit",
+        "Tailwind CSS",
+      ],
+      demo: "https://my-ai-reel-scroller-d557.vercel.app/",
+      github: "https://github.com/ChiragGup/my-Ai-reel-scroller",
+      image: "/reel.png",
+    },
     {
       id: 2,
-      title: 'Portfolio Website',
+      title: "Personal Portfolio Website",
       description:
-        'A modern and fully responsive personal portfolio website built with React.js and Tailwind CSS. It showcases projects, skills, and contact information in a clean, user-friendly interface.',
-      tech: ['React.js', 'Tailwind CSS'],
-      demo: 'https://port-zeta-woad.vercel.app/',
-      image: '/portfolio.png',
+        "A modern, fully responsive personal portfolio website built with React.js and Tailwind CSS, showcasing projects, skills, and contact information in a clean and professional UI.",
+      tech: ["React.js", "Tailwind CSS"],
+      demo: "https://port-zeta-woad.vercel.app/",
+      github: "https://github.com/ChiragGup/portfolio",
+      image: "/portfolio.png",
     },
     {
       id: 3,
-      title: 'Cooking Website',
+      title: "Smart Search Dashboard",
       description:
-        'A recipe and cooking website built with React and Tailwind CSS, featuring API integration for dynamic recipe data and a clean, user-friendly interface.',
-      tech: ['React', 'API Integration', 'Tailwind CSS'],
-      demo: 'https://last-blog-nine.vercel.app/',
-      image: '/cooking.png',
+        "A responsive frontend dashboard that fetches data from a public API and provides real-time, case-insensitive search with dynamic filtering and a professional UI.",
+      tech: ["React", "API Integration", "Context API", "Tailwind CSS"],
+      demo: "https://search-dash-board.vercel.app/",
+      github: "https://github.com/ChiragGup/search-dashboard",
+      image: "/dashboard.png",
     },
-    
   ];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
+      {/* ---------------- NAVBAR ---------------- */}
       <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex-shrink-0">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Portfolio
-              </span>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Chirag.dev
+          </span>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {['home', 'about', 'skills', 'projects'].map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 capitalize ${
-                      activeSection === section
-                        ? 'bg-blue-100 text-blue-700'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-100'
-                    }`}
-                  >
-                    {section}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
+          <div className="hidden md:flex space-x-8">
+            {["home", "about", "skills", "projects"].map((s) => (
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 text-gray-700 hover:text-blue-600 transition-colors"
+                key={s}
+                onClick={() => scrollToSection(s)}
+                className={`capitalize px-3 py-2 rounded-md text-sm font-medium ${
+                  activeSection === s
+                    ? "bg-blue-100 text-blue-700"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {s}
               </button>
-            </div>
+            ))}
+            <a
+              href="https://github.com/ChiragGup"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-gray-700 hover:text-black"
+            >
+              <Github size={18} /> GitHub
+            </a>
           </div>
-        </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {['home', 'about', 'skills', 'projects'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-md transition-all capitalize"
-                >
-                  {section}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+          <button
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* ---------------- HERO ---------------- */}
       <section
         id="home"
-        className="pt-16 pb-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
+        className="pt-24 pb-32 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-center"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Hi, I'm{' '}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Chirag Gupta
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Full Stack Developer passionate about building scalable, responsive, and secure web applications
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
-              >
-                View My Work
-              </button>
-            </div>
-          </div>
-        </div>
+        <h1 className="text-4xl md:text-6xl font-bold text-white">
+          Hi, I'm{" "}
+          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            Chirag Gupta
+          </span>
+        </h1>
+        <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
+          Full Stack Developer focused on building secure, scalable, and
+          responsive web applications
+        </p>
+        <button
+          onClick={() => scrollToSection("projects")}
+          className="mt-10 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+        >
+          View My Work
+        </button>
       </section>
 
-      {/* About Section */}
+      {/* ---------------- ABOUT ---------------- */}
       <section id="about" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-8">About Me</h2>
-              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p>
-                  I'm an enthusiastic <strong>Full Stack Developer</strong> with
-                  hands-on experience in building modern web applications using
-                  Next.js, React.js, Node.js, and MongoDB.
-                </p>
-                <p>
-                  My expertise lies in designing scalable backend architectures,
-                  creating clean and responsive UI components, integrating APIs,
-                  and optimizing performance for a seamless full-stack experience.
-                </p>
-                <p>
-                  Beyond coding, I focus on writing maintainable and secure code,
-                  following best practices, and constantly learning new tools
-                  and technologies to stay ahead in the full-stack ecosystem.
-                </p>
-              </div>
-            </div>
-            {/* Profile Image */}
-            <div className="flex justify-center ">
-              <div className="relative group">
-                <div className="p-1 rounded-full bg-gradient-to-tr from-blue-400 via-purple-400 to-pink-400 shadow-xl">
-                  <img
-                    src="/myPhoto.jpg"
-                    alt="Profile"
-                    className="w-72 h-72 object-cover rounded-full border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl font-bold mb-6">About Me</h2>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              I’m a <strong>Full Stack Developer</strong> experienced in building
+              modern applications using React, Next.js, Node.js, and MongoDB. I
+              focus on clean UI, secure authentication, scalable APIs, and
+              real-world problem solving.
+            </p>
           </div>
+          <img
+            src="/myPhoto.jpg"
+            alt="Profile"
+            className="w-72 h-72 object-cover rounded-full mx-auto shadow-lg"
+          />
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* ---------------- SKILLS (RESTORED UI) ---------------- */}
       <section id="skills" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Skills & Technologies
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Here are the technologies and tools I work with
-            </p>
-          </div>
-
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-12">Skills & Technologies</h2>
           <div className="flex flex-wrap justify-center gap-6">
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <div
                 key={skill.name}
-                className={`w-40 h-32 flex items-center justify-center px-6 py-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 bg-gradient-to-r ${skill.color} font-semibold text-lg text-center transition-all duration-300`}
-                style={{ animationDelay: `${index * 100}ms` }}
+                className={`w-40 h-32 flex items-center justify-center rounded-2xl shadow-lg hover:scale-105 transition bg-gradient-to-r ${skill.color} font-semibold`}
               >
                 {skill.name}
               </div>
@@ -236,61 +190,56 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* ---------------- PROJECTS ---------------- */}
       <section id="projects" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Featured Projects
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              A collection of projects that showcase my skills and passion
-            </p>
-          </div>
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            Featured Projects
+          </h2>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {projects.map((p) => (
               <div
-                key={project.id}
-                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                key={p.id}
+                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition overflow-hidden"
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                </div>
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-48 object-cover"
+                />
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
+                  <h3 className="text-xl font-bold mb-3">{p.title}</h3>
+                  <p className="text-gray-600 mb-4">{p.description}</p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
+                    {p.tech.map((t) => (
                       <span
-                        key={tech}
+                        key={t}
                         className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full"
                       >
-                        {tech}
+                        {t}
                       </span>
                     ))}
                   </div>
 
                   <div className="flex gap-3">
                     <a
-                      href={project.demo}
+                      href={p.demo}
                       target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all text-sm"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition"
                     >
-                      <ExternalLink size={16} />
-                      Demo
+                      <ExternalLink size={16} /> Demo
+                    </a>
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 border border-gray-800 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition"
+                    >
+                      <Github size={16} /> Code
                     </a>
                   </div>
                 </div>
@@ -300,10 +249,7 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <div>
-        <Contact />
-      </div>
+      <Contact />
     </div>
   );
 }
